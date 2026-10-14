@@ -1,0 +1,29 @@
+name: Windows desktop checks
+on:
+  push:
+  pull_request:
+jobs:
+  desktop:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.19.0
+          cache: npm
+      - name: Report Windows check environment
+        run: |
+          node -e "const fs=require('node:fs'),os=require('node:os');console.log(JSON.stringify({node:process.version,platform:process.platform,temp:os.tmpdir(),realTemp:fs.realpathSync.native(os.tmpdir()),locale:Intl.DateTimeFormat().resolvedOptions().locale}));"
+          npm --version
+          Get-Culture
+      - run: npm ci
+      - run: npm run build:desktop
+      - run: node scripts/prepare-sites-build.mjs
+      - run: npm run check
+      - run: npm run format:check
+      - run: npm run package:share
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jinjingtai-windows-share
+          path: release/share-*
+          if-no-files-found: error

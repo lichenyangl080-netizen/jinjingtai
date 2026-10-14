@@ -1,0 +1,40 @@
+{
+  "name": "jinjingtai-desktop-prototype",
+  "version": "0.2.12",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "type": "module",
+  "scripts": {
+    "postinstall": "node node_modules/electron/install.js",
+    "start": "electron .",
+    "desktop:qa": "electron . --qa",
+    "check": "tsc --noEmit && node --test tests/*.cjs tests/*.mjs",
+    "build:desktop": "node scripts/build-desktop.mjs",
+    "package:desktop": "node scripts/build-desktop.mjs && node scripts/package-desktop.mjs",
+    "package:share": "node scripts/build-desktop.mjs && node scripts/package-share.mjs",
+    "clean:artifacts": "node scripts/clean-artifacts.mjs",
+    "dev": "vite",
+    "build": "vite build && node scripts/prepare-sites-build.mjs",
+    "preview": "vite preview",
+    "test:sites": "node --test tests/sites-worker.test.mjs",
+    "format:check": "prettier --check src integration electron scripts tests"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@vitejs/plugin-react": "5.0.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "vite": "6.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "electron": "42.11.11",
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.3"
+  },
+  "main": "electron/main.cjs"
+}

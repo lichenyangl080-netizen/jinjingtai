@@ -1,0 +1,15 @@
+/* The freely licensed Noto Serif SC font is bundled for offline display. */
+@font-face {
+  font-family: "Jinjingtai Serif";
+  src: url("/assets/NotoSerifSC.woff") format("woff");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Jinjingtai Sans";
+  src: url("/assets/NotoSansSC.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

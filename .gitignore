@@ -1,0 +1,9 @@
+node_modules/
+dist/
+release/
+.local-data/
+qa/
+*.bak
+state-location.json
+normal-connection-check.json
+*.log
